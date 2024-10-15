@@ -175,6 +175,8 @@ def main():
 
     apple = Apple()
     snake = Snake()
+    while apple.position in snake.positions:
+        apple.randomize_position()
 
     while True:
         clock.tick(SPEED)
@@ -185,6 +187,8 @@ def main():
         if new_snake_position == apple.position:
             snake.length += 1
             apple.randomize_position()
+            while apple.position in snake.positions:
+                apple.randomize_position()
         if new_snake_position in snake.positions[2:]:
             snake.reset()
             screen.fill(BOARD_BACKGROUND_COLOR)
